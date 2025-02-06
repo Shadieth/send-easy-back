@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "aebc8f20-5cd9-49e9-b696-1872f88ccb7b",
+		"name": "Send Easy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41659689"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"alexis@alexis.com\",\n  \"password\": \"alexispassword\",\n  \"name\": \"Alexis Sanchez\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
