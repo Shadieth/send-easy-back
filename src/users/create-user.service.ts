@@ -1,31 +1,31 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import * as bcrypt from 'bcrypt';
+import { ConflictException, Injectable } from '@nestjs/common';
+import bcrypt from 'bcrypt';
 import { User } from './schemas/users.schema';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UserRepository } from './users.repository';
 
 @Injectable()
-export class UsersService {
-  constructor(@InjectModel('User') private userModel: Model<User>) {}
+export class CreateUserService {
+  constructor(private readonly userRepository: UserRepository)  {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
+    const user = await this.userRepository.findByEmail(createUserDto.email);
+    if (user) {
+      throw new ConflictException('User already exists');
+    }
     // Cifrar la contraseña antes de crear el usuario
     const salt = await bcrypt.genSalt(10); // Generar un "sal" para el cifrado
     const hashedPassword = await bcrypt.hash(createUserDto.password, salt); // Cifrar la contraseña
 
-    // Crear el usuario con la contraseña cifrada
-    const createdUser = new this.userModel({
+    return await this.userRepository.create({
       ...createUserDto,
-      password: hashedPassword, // Usar la contraseña cifrada
+      password: hashedPassword,
     });
-
-    return createdUser.save();
   }
 
   // Método para comparar la contraseña durante el inicio de sesión
   async validateUserPassword(email: string, password: string): Promise<boolean> {
-    const user = await this.userModel.findOne({ email });
+    const user = await this.userRepository.findByEmail(email);
     if (!user) {
       return false;
     }
