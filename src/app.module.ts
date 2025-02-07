@@ -6,7 +6,7 @@ import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     DatabaseModule,
-    MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://localhost:27017/send_easy_db'),
+    MongooseModule.forRoot(process.env.MONGO_URI ?? 'mongodb://localhost:27017/send_easy_db'),
     UsersModule
   ],
 })
