@@ -1,4 +1,5 @@
-export interface User {
+
+export interface User extends Document {
   email: string;
   password: string;
   name: string;
