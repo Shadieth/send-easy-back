@@ -1,10 +1,11 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './interfaces/user.interface';
 import { CreateUserService } from './services/create-user.service';
 import { GetUserByEmailService } from './services/get-user-by-email.service';
-import { GetUserByEmailDto } from './dtos/get-user.dto';
+import { GetUserByEmailDto, UpdateUserDto } from './dtos/get-user.dto';
 import { GetAllUsersService } from './services/get-all-users.service';
+import { UpdateUserByEmailService } from './services/update-user-by-email.service';
 
 @Controller('users')
 export class UsersController {
@@ -12,7 +13,7 @@ export class UsersController {
     private readonly createUserService: CreateUserService,
     private readonly getUserByEmailService: GetUserByEmailService,
     private readonly getAllUsersService: GetAllUsersService,
-
+    private readonly updateUserByEmailService: UpdateUserByEmailService,
   ) {}
 
   //Endpoint to create a new user
@@ -37,5 +38,11 @@ export class UsersController {
   @Get(':email')
   async getUserByEmail(@Param() params: GetUserByEmailDto): Promise<User | null> {
     return this.getUserByEmailService.findByEmail(params.email);
+  }
+
+  //Endpoint to update a user by email
+  @Put(':email')
+  async updateUserByEmail(@Param() params: GetUserByEmailDto, @Body() updateUserDto: UpdateUserDto): Promise<User | null> {
+    return this.updateUserByEmailService.updateUserByEmail(params.email, updateUserDto);
   }
 }

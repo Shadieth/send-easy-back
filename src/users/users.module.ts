@@ -6,12 +6,13 @@ import { UserRepository } from './users.repository';
 import { UserSchema } from './schemas/create-user.schema';
 import { GetUserByEmailService } from './services/get-user-by-email.service';
 import { GetAllUsersService } from './services/get-all-users.service';
+import { UpdateUserByEmailService } from './services/update-user-by-email.service';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])
   ],
   controllers: [UsersController],
-  providers: [CreateUserService, GetUserByEmailService, GetAllUsersService, UserRepository],
+  providers: [CreateUserService, GetUserByEmailService, GetAllUsersService, UpdateUserByEmailService, UserRepository],
 })
 export class UsersModule {}
