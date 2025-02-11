@@ -28,5 +28,4 @@ export class UserRepository {
   async findAll(): Promise<User[]> {
     return await this.userModel.find().exec();
   }
-
 }
