@@ -56,7 +56,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "67a8ea66c5d1a863a06b339f"
+									"value": "67a3dbcddab8889a66eff78b"
 								}
 							]
 						}
@@ -69,7 +69,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/users/email/:email",
+							"raw": "http://localhost:3000/users/:email",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -77,13 +77,12 @@
 							"port": "3000",
 							"path": [
 								"users",
-								"email",
 								":email"
 							],
 							"variable": [
 								{
 									"key": "email",
-									"value": "test@example.com"
+									"value": ""
 								}
 							]
 						}
@@ -104,6 +103,80 @@
 							"port": "3000",
 							"path": [
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "by email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/email/:email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"email",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "jose@jose.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "by email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"primerputpassword13\",\n    \"name\": \"Primer put 213\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/:email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "jose@jose.com"
+								}
 							]
 						}
 					},

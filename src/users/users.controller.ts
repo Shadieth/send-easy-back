@@ -1,10 +1,12 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './interfaces/user.interface';
 import { CreateUserService } from './services/create-user.service';
 import { GetUserByEmailService } from './services/get-user-by-email.service';
-import { GetUserByIdDto, GetUserByEmailDto } from './dtos/get-user.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 import { GetAllUsersService } from './services/get-all-users.service';
+import { UpdateUserByEmailService } from './services/update-user-by-email.service';
+import { GetUserByIdDto, GetUserByEmailDto } from './dtos/get-user.dto';
 import { GetUserByIdService } from './services/get-user-by-id.service';
 
 @Controller('users')
@@ -13,6 +15,7 @@ export class UsersController {
     private readonly createUserService: CreateUserService,
     private readonly getUserByEmailService: GetUserByEmailService,
     private readonly getAllUsersService: GetAllUsersService,
+    private readonly updateUserByEmailService: UpdateUserByEmailService,
     private readonly getUserByIdService: GetUserByIdService,
   ) {}
 
@@ -38,5 +41,11 @@ export class UsersController {
   @Get(':id')
   async getUserById(@Param() params: GetUserByIdDto): Promise<User | null> {
     return this.getUserByIdService.findById(params.id);
+  }
+
+  //Endpoint to update a user by email
+  @Put(':email')
+  async updateUserByEmail(@Param() params: GetUserByEmailDto, @Body() updateUserDto: UpdateUserDto): Promise<User | null> {
+    return this.updateUserByEmailService.updateUserByEmail(params.email, updateUserDto);
   }
 }
