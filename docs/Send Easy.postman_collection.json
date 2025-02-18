@@ -56,7 +56,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "67a8ea66c5d1a863a06b339f"
+									"value": "67a3dbcddab8889a66eff78b"
 								}
 							]
 						}
@@ -126,7 +126,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/:email",
+							"raw": "http://localhost:3000/users/email/:email",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -134,12 +134,13 @@
 							"port": "3000",
 							"path": [
 								"users",
+								"email",
 								":email"
 							],
 							"variable": [
 								{
 									"key": "email",
-									"value": ""
+									"value": "jose@jose.com"
 								}
 							]
 						}
@@ -147,13 +148,13 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "by email",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"password\": \"primerputpassword\",\n    \"name\": \"Primer put\"\n}",
+							"raw": "{\n    \"password\": \"primerputpassword13\",\n    \"name\": \"Primer put 213\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -174,7 +175,7 @@
 							"variable": [
 								{
 									"key": "email",
-									"value": "test@example.com"
+									"value": "jose@jose.com"
 								}
 							]
 						}

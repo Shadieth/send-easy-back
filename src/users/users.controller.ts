@@ -3,7 +3,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './interfaces/user.interface';
 import { CreateUserService } from './services/create-user.service';
 import { GetUserByEmailService } from './services/get-user-by-email.service';
-import { UpdateUserDto } from './dtos/get-user.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 import { GetAllUsersService } from './services/get-all-users.service';
 import { UpdateUserByEmailService } from './services/update-user-by-email.service';
 import { GetUserByIdDto, GetUserByEmailDto } from './dtos/get-user.dto';
@@ -37,15 +37,15 @@ export class UsersController {
     return this.getUserByEmailService.findByEmail(params.email);
   }
 
-  //Endpoint to update a user by email
-  @Put(':email')
-  async updateUserByEmail(@Param() params: GetUserByEmailDto, @Body() updateUserDto: UpdateUserDto): Promise<User | null> {
-    return this.updateUserByEmailService.updateUserByEmail(params.email, updateUserDto);
-  }
-
   //Endpoint to get a user by id
   @Get(':id')
   async getUserById(@Param() params: GetUserByIdDto): Promise<User | null> {
     return this.getUserByIdService.findById(params.id);
+  }
+
+  //Endpoint to update a user by email
+  @Put(':email')
+  async updateUserByEmail(@Param() params: GetUserByEmailDto, @Body() updateUserDto: UpdateUserDto): Promise<User | null> {
+    return this.updateUserByEmailService.updateUserByEmail(params.email, updateUserDto);
   }
 }
