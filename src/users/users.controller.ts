@@ -3,8 +3,9 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './interfaces/user.interface';
 import { CreateUserService } from './services/create-user.service';
 import { GetUserByEmailService } from './services/get-user-by-email.service';
-import { GetUserByEmailDto } from './dtos/get-user.dto';
+import { GetUserByIdDto, GetUserByEmailDto } from './dtos/get-user.dto';
 import { GetAllUsersService } from './services/get-all-users.service';
+import { GetUserByIdService } from './services/get-user-by-id.service';
 
 @Controller('users')
 export class UsersController {
@@ -12,7 +13,7 @@ export class UsersController {
     private readonly createUserService: CreateUserService,
     private readonly getUserByEmailService: GetUserByEmailService,
     private readonly getAllUsersService: GetAllUsersService,
-
+    private readonly getUserByIdService: GetUserByIdService,
   ) {}
 
   //Endpoint to create a new user
@@ -27,15 +28,15 @@ export class UsersController {
     return this.getAllUsersService.getAllUsers();
   }
 
-  // //Endpoint to get a user by id
-  // @Get(':id')
-  // async getUserById(@Param() params: GetUserByIdDto): Promise<User | null> {
-  //   return this.getUserByIdService.findById(params.id);
-  // }
-
   //Endpoint to get a user by email
-  @Get(':email')
+  @Get('email/:email')
   async getUserByEmail(@Param() params: GetUserByEmailDto): Promise<User | null> {
     return this.getUserByEmailService.findByEmail(params.email);
+  }
+
+  //Endpoint to get a user by id
+  @Get(':id')
+  async getUserById(@Param() params: GetUserByIdDto): Promise<User | null> {
+    return this.getUserByIdService.findById(params.id);
   }
 }
