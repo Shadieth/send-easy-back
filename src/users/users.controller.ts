@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Put } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put, Delete } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './interfaces/user.interface';
 import { CreateUserService } from './services/create-user.service';
@@ -8,6 +8,8 @@ import { GetAllUsersService } from './services/get-all-users.service';
 import { UpdateUserByEmailService } from './services/update-user-by-email.service';
 import { GetUserByIdDto, GetUserByEmailDto } from './dtos/get-user.dto';
 import { GetUserByIdService } from './services/get-user-by-id.service';
+import { DeleteUserByIdDto } from './dtos/delete-user.dto';
+import { DeleteUserByIdService } from './services/delete-user-by-id.service';
 
 @Controller('users')
 export class UsersController {
@@ -17,6 +19,7 @@ export class UsersController {
     private readonly getAllUsersService: GetAllUsersService,
     private readonly updateUserByEmailService: UpdateUserByEmailService,
     private readonly getUserByIdService: GetUserByIdService,
+    private readonly deleteUserByIdService: DeleteUserByIdService
   ) {}
 
   //Endpoint to create a new user
@@ -47,5 +50,11 @@ export class UsersController {
   @Put(':email')
   async updateUserByEmail(@Param() params: GetUserByEmailDto, @Body() updateUserDto: UpdateUserDto): Promise<User | null> {
     return this.updateUserByEmailService.updateUserByEmail(params.email, updateUserDto);
+  }
+
+  //Endpoint to delete a user by id
+  @Delete(':id')
+  async DeleteUserByIdDto(@Param() params: DeleteUserByIdDto): Promise<void> {
+    await this.deleteUserByIdService.deleteUserById(params.id);
   }
 }

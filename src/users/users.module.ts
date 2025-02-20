@@ -8,6 +8,7 @@ import { GetUserByEmailService } from './services/get-user-by-email.service';
 import { GetAllUsersService } from './services/get-all-users.service';
 import { UpdateUserByEmailService } from './services/update-user-by-email.service';
 import { GetUserByIdService } from './services/get-user-by-id.service';
+import { DeleteUserByIdService } from './services/delete-user-by-id.service';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { GetUserByIdService } from './services/get-user-by-id.service';
     GetAllUsersService,
     GetUserByIdService,
     UpdateUserByEmailService,
+    DeleteUserByIdService,
     UserRepository
   ],
 })
