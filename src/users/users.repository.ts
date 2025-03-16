@@ -14,7 +14,7 @@ export class UserRepository {
     const createdUser = new this.userModel(createUserDto);
     return await createdUser.save();
   }
-
+  
   //Find a user by email
   async findByEmail(email: string): Promise<User | null> {
     return await this.userModel.findOne({ email }).exec();
@@ -31,12 +31,12 @@ export class UserRepository {
   }
 
   //Update a user by email
-  async updateUserByEmail(email: string, updateUserDto: UpdateUserDto): Promise<User | null> {
+  async updateByEmail(email: string, updateUserDto: UpdateUserDto): Promise<User | null> {
     return await this.userModel.findOneAndUpdate({ email }, updateUserDto, { new: true }).exec();
   }
 
   //Delete a user by id
-  async deleteUserById(id: string): Promise<void> {
+  async deleteById(id: string): Promise<void> {
     await this.userModel.deleteOne({ _id: id }).exec();
   }
 }

@@ -6,6 +6,7 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = process.env.PORT ?? 3000;
+  const host = process.env.HOST ?? '0.0.0.0';
 
   // Conectar a la base de datos
   await DatabaseModule.connect();
@@ -18,7 +19,7 @@ async function bootstrap() {
     transform: true, // Transforma los datos entrantes en el tipo correcto
   }));
 
-  await app.listen(port);
+  await app.listen(port, host);
   console.log(`Servidor corriendo en http://localhost:${port}`);
 }
 

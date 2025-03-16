@@ -2,11 +2,14 @@
   "name": "send-easy-back",
   "version": "1.0.0",
   "main": "dist/main.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node dist/main.js",
     "start:dev": "concurrently \"npm run build\" \"npm run start\"",
     "build": "nest build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint . --ext .js,.ts",
+    "lint:fix": "npx eslint . --ext .js,.ts --fix"
   },
   "keywords": [],
   "author": "Shadieth",
@@ -23,8 +26,14 @@
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.21.0",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^22.13.1",
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "eslint": "^9.21.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-define-config": "^0.1.0",
+    "globals": "^16.0.0",
+    "typescript-eslint": "^8.26.0"
   }
 }

@@ -8,6 +8,6 @@ export class UpdateUserByEmailService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async updateUserByEmail(email: string, updateUserDto: UpdateUserDto): Promise<User | null> {
-    return await this.userRepository.updateUserByEmail(email, updateUserDto);
+    return await this.userRepository.updateByEmail(email, updateUserDto);
   }
 }
