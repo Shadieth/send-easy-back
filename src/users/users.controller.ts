@@ -54,7 +54,8 @@ export class UsersController {
 
   //Endpoint to delete a user by id
   @Delete(':id')
-  async DeleteUserByIdDto(@Param() params: DeleteUserByIdDto): Promise<void> {
+  async DeleteUserByIdDto(@Param() params: DeleteUserByIdDto): Promise<boolean> {
     await this.deleteUserByIdService.deleteUserById(params.id);
+    return true;
   }
 }
